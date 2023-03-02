@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [[ $1 == setup ]]; then
+	mkdir test
+	cd test
+	mkdir edu
+	cd edu
+	mkdir bvu
+	cd bvu
+	mkdir cs
+	cd cs
+	touch DevOps.java && touch DevOpsMain.java
+
+	echo "public class DevOps {" >> DevOps.java
+	echo "	public Devops() {" >> DevOps.java
+	echo "	}" >> DevOps.java
+	echo "}" >> DevOps.java
+
+	echo "public class DevOpsMain {" >> DevOpsMain.java
+	echo "	public static void main(String[] args) {" >> DevOpsMain.java
+	echo "		Devops dev = new DevOps();" >> DevOpsMain.java
+	echo "	}" >> DevOpsMain.java
+	echo "}" >> DevOpsMain.java
+elif [[ $1 == teardown ]]; then
+rm -rf test
+else
+	echo "Usage: run-test setup || run-test teardown" 
+fi
