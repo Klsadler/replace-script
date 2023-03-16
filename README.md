@@ -5,11 +5,17 @@ This script will look recursively through a given path. It will find and relpace
 
 ## run-test
 This script creates and removes an example directory for the replace script. The run-test script has two modes, setup and teardown. The setup mode creates a directory with the following structure:
+
 test
+
 test/edu
+
 test/edu/bvu
+
 test/edu/bvu/cs
+
 test/edu/bvu/cs/WebApp.java
+
 test/edu/bvu/cs/WebAppMain.java
 If the test directory already exists then it will overwrite the previous directory. When using the setup mode, prompt with the command "./run-test setup"
 
