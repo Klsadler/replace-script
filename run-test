@@ -1,6 +1,11 @@
 #!/bin/bash
 
 if [[ $1 == setup ]]; then
+	if [[ -e test ]]; then
+		echo "File Already Exists"
+		echo "Overwriting File"
+		rm -rf test
+	fi
 	mkdir test
 	cd test
 	mkdir edu
@@ -12,17 +17,21 @@ if [[ $1 == setup ]]; then
 	touch DevOps.java && touch DevOpsMain.java
 
 	echo "public class DevOps {" >> DevOps.java
-	echo "	public Devops() {" >> DevOps.java
+	echo "	public DevOps() {" >> DevOps.java
 	echo "	}" >> DevOps.java
 	echo "}" >> DevOps.java
 
 	echo "public class DevOpsMain {" >> DevOpsMain.java
 	echo "	public static void main(String[] args) {" >> DevOpsMain.java
-	echo "		Devops dev = new DevOps();" >> DevOpsMain.java
+	echo "		DevOps dev = new DevOps();" >> DevOpsMain.java
 	echo "	}" >> DevOpsMain.java
 	echo "}" >> DevOpsMain.java
 elif [[ $1 == teardown ]]; then
-rm -rf test
+	if [[ -d test ]]; then
+		rm -rf test
+	else
+		echo "test already does not exist, can't kill what's already dead"
+	fi
 else
 	echo "Usage: run-test setup || run-test teardown" 
 fi

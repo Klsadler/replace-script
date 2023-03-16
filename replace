@@ -2,15 +2,33 @@
 
 from sys import argv
 from pathlib import Path
+import os
+import re
+
+if len(argv) != 4:
+    print("Usage: replace path oldpattern newpattern")
+    quit()
 
 directory = argv[1]
 oldpattern = argv[2]
 newpattern = argv[3]
 
+
 # from traverse.py
-def print_path(path):
-	print(str(path.absolute()))
-	if path.is_dir():
-		for entry in path.iterdir():
-			print_path(entry)
-print_path(Path(directory))
+def replace_path(path):
+    if os.path.isfile(path):
+        with open(path, 'r') as text:
+            lines = text.read()
+            if oldpattern in lines:
+                lines = lines.replace(oldpattern, newpattern)
+        with open(path, 'w') as text:
+            text.write(lines)
+    if oldpattern in os.path.basename(path):
+
+        name = re.sub(oldpattern, newpattern, str(path.absolute()))
+        os.rename(path.absolute(), name)
+    if path.is_dir():
+        for entry in path.iterdir():
+            print_path(entry)
+
+replace_path(Path(directory))
