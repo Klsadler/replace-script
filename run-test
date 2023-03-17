@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $1 == setup ]]; then
+if [[ $1 == setup && $# == 1 ]]; then
 	if [[ -e test ]]; then
 		echo "File Already Exists"
 		echo "Overwriting File"
@@ -26,7 +26,8 @@ if [[ $1 == setup ]]; then
 	echo "		DevOps dev = new DevOps();" >> DevOpsMain.java
 	echo "	}" >> DevOpsMain.java
 	echo "}" >> DevOpsMain.java
-elif [[ $1 == teardown ]]; then
+elif [[ $1 == teardown && $# == 1 ]]; then
+	echo $#
 	if [[ -d test ]]; then
 		rm -rf test
 	else
